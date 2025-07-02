@@ -1,2 +1,0 @@
-start
-call (void)win()
