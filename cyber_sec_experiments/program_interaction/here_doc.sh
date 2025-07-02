@@ -1,0 +1,2 @@
+var=$(cat )
+echo $var
