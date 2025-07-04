@@ -5,9 +5,10 @@ import socket, time
 def listener():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(("10.0.0.1", 3000))
-
     print("start lestinig...")
-    print(s.recvfrom(1024))
+    packet = s.recvfrom(1024)
+    while True:
+        print(packet)
     print("Done!")
 
 def forger():
@@ -18,13 +19,14 @@ def forger():
         udp = UDP(sport=31337, dport=port)
         data = Raw(load=b"FLAG:10.0.0.1:3000")
         msg = ip / udp / data
-        i = 1
-        while i < 10:
-            send(msg, verbose=False)
-            time.sleep(0.1)
-            i += 1
+        # i = 1
+        # while i < 10:
+        send(msg, verbose=False)
+            # time.sleep(0.01)
+            # i += 1
         # time.sleep(0.1)
         port += 1
+        print("port =", port)
         if port == 65535:
             port = 0
     
