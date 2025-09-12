@@ -1,0 +1,14 @@
+
+
+In this challenge you'll be answering questions about the standard Bell–LaPadula model of Mandatory Access Control.
+
+Answer the question about the model to get the flag.
+
+
+In this challenge, your goal is to answer 1 questions correctly in 120 seconds about the following Mandatory Access Control (MAC) system:
+4 Levels (first is highest aka more sensitive):
+TS
+S
+C
+UC
+Q 1. Can a Subject with level S write an Object with level S?

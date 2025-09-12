@@ -1,0 +1,14 @@
+
+dr-xr-x--x 3 root   user_wcbszvwe 4096 Sep 12 17:11 tmpq3_bmw5v
+
+
+
+In this challenge you will work understand how UNIX permissions for directories work with multiple users.
+
+You'll be given access to various user accounts, use su to switch between them.
+
+
+Created user user_ktbnpjnl with password zdlejtxp
+Created user user_foairdyy with password kaheqzaq
+Created user user_wcbszvwe with password wkmgpvoa
+A copy of the flag has been placed somewhere in /tmp:
