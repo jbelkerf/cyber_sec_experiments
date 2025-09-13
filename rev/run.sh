@@ -1,0 +1,1 @@
+> img.cimg ; python make_img.py;ls -l ;/challenge/cimg  img.cimg 

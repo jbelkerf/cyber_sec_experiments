@@ -1,14 +1,22 @@
 from Crypto.Util.strxor import strxor
 from pwn import *
 
-flag_cypher = bytes.fromhex('95211dda63b011b6ffdc086d995821f24357c57f6210c33ccb8a2f42668ca7040478e250f6d054251e97a86c2b87d9a2df442bba1500921e3ca3')
+# p = process("/challenge/run")
+
+# flag_cypher = bytes.fromhex(p.recvline_contains('Flag').split(':')[-1].strip())
+
+# p.send
+
+
+
+flag_cypher = bytes.fromhex('b41ea828ebedbb3fe9aacf441bb55d0a4768ec467e12a84daabb9e0b436dccf004d3373825fb26061c078800544183128eeec1e7a1e4c54bff9b')
 
 #print(len(flag_cypher))
 
-text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".encode()
-text_cypher = "4ffcd95eaa75d7703011c7bc62cace699989428c87d903bb236ab0ba83".encode()
+text = bytes.fromhex("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+text_cypher = bytes.fromhex("6ec36cac22287df926670095e027b2919db66bb59bdb68ca425b01f3a6fe0129f110cad9ce28e282d2fb58e484a66df4100d11033f2d15b6283b")
 
-key = strxor(text_cypher, text)
+key = strxor(text_cypher, text[:len(text_cypher)])
 
-flag = strxor(flag_cypher, key)
+flag = strxor(key,flag_cypher[:len(key)])
 print(flag.decode('Latin'))
