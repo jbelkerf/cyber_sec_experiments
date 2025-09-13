@@ -8,7 +8,10 @@ key = strxor(cry_str, st)
 
 flag = strxor(key, "flag!".encode())
 
+
+payload = "TASK: " +   bytes.hex(flag)
+
 p = process("/challenge/worker")
 
-p.sendline(flag)
-print(p.recv(timeout=3))
+p.sendline(payload)
+p.interactive()
