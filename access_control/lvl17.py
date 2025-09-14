@@ -27,6 +27,7 @@ while i < cat_number:
     cati.append(p.recvline().decode().strip('\n'))
     i+=1
 print(cati)
+
 def yes_or_no(s, o):
     print(s.category)
     print(o.category)
