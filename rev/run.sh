@@ -1,1 +1,1 @@
-> img.cimg ; python make_img.py;ls -l ;/challenge/cimg  img.cimg 
+> img.cimg ; python make_img4.py;ls -l ;./a.out  img.cimg 

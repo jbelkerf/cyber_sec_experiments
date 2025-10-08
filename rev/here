@@ -1,0 +1,282 @@
+
+000000000040168b <read_exact>:
+ 	endbr64
+ 	push   r13
+ 	movsxd r13,edx
+ 	push   r12
+ 	mov    rdx,r13
+ 	mov    r12,rcx
+ 	push   rbp
+ 	mov    ebp,r8d
+ 	push   rbx
+ 	push   r9
+ 	call   4011d0 <read@plt>
+ 	cmp    r13d,eax
+ 	je     4016db <read_exact+0x50>
+ 	mov    rdi,QWORD PTR [rip+0x6aec]        # 4081a0 <stderr@GLIBC_2.2.5>
+ 	mov    rdx,r12
+ 	mov    esi,0x1
+ 	xor    eax,eax
+ 	call   401250 <__fprintf_chk@plt>
+ 	mov    rsi,QWORD PTR [rip+0x6ad6]        # 4081a0 <stderr@GLIBC_2.2.5>
+ 	mov    edi,0xa
+ 	call   4011c0 <fputc@plt>
+ 	mov    edi,ebp
+ 	call   401240 <exit@plt>
+ 	add    QWORD PTR [rip+0x6ace],r13        # 4081b0 <total_data>
+ 	pop    rax
+ 	pop    rbx
+ 	pop    rbp
+ 	pop    r12
+ 	pop    r13
+ 	ret
+
+00000000004016ea <handle_20169>:
+ 	endbr64
+ 	push   r15
+ 	push   r14
+ 	push   r13
+ 	push   r12
+ 	push   rbp
+ 	push   rbx
+ 	mov    rbx,rdi
+ 	sub    rsp,0x48
+ 	movzx  ebp,BYTE PTR [rdi+0x6]
+ 	movzx  edx,BYTE PTR [rdi+0x7]
+ 	mov    rax,QWORD PTR fs:0x28
+ 	mov    QWORD PTR [rsp+0x38],rax
+ 	xor    eax,eax
+ 	imul   ebp,edx
+ 	movsxd rbp,ebp
+ 	shl    rbp,0x2
+ 	mov    rdi,rbp
+ 	call   401200 <malloc@plt>
+ 	test   rax,rax
+ 	jne    40173c <handle_20169+0x52>
+ 	lea    rdi,[rip+0x99e]        # 4020d3 <_IO_stdin_used+0xd3>
+ 	call   401170 <puts@plt>
+ 	jmp    401793 <handle_20169+0xa9>
+ 	mov    edx,ebp
+ 	mov    rsi,rax
+ 	or     r8d,0xffffffff
+ 	xor    edi,edi
+ 	lea    rcx,[rip+0x9ba]        # 402108 <_IO_stdin_used+0x108>
+ 	mov    r12,rax
+ 	call   40168b <read_exact>
+ 	movzx  eax,BYTE PTR [rbx+0x7]
+ 	movzx  edx,BYTE PTR [rbx+0x6]
+ 	imul   edx,eax
+ 	xor    eax,eax
+ 	cmp    edx,eax
+ 	jle    40179b <handle_20169+0xb1>
+ 	movzx  ecx,BYTE PTR [r12+rax*4+0x3]
+ 	inc    rax
+ 	lea    esi,[rcx-0x20]
+ 	cmp    sil,0x5e
+ 	jbe    401763 <handle_20169+0x79>
+ 	mov    rdi,QWORD PTR [rip+0x6a20]        # 4081a0 <stderr@GLIBC_2.2.5>
+ 	lea    rdx,[rip+0x99d]        # 402124 <_IO_stdin_used+0x124>
+ 	mov    esi,0x1
+ 	xor    eax,eax
+ 	call   401250 <__fprintf_chk@plt>
+ 	or     edi,0xffffffff
+ 	call   401240 <exit@plt>
+ 	xor    r13d,r13d
+ 	lea    r14,[rsp+0x1f]
+ 	movzx  eax,BYTE PTR [rbx+0x7]
+ 	cmp    eax,r13d
+ 	jle    401848 <handle_20169+0x15e>
+ 	xor    ebp,ebp
+ 	movzx  r15d,BYTE PTR [rbx+0x6]
+ 	cmp    r15d,ebp
+ 	jle    401840 <handle_20169+0x156>
+ 	mov    r10d,r15d
+ 	mov    ecx,0x19
+ 	mov    esi,0x19
+ 	mov    rdi,r14
+ 	imul   r10d,r13d
+ 	lea    r8,[rip+0x97b]        # 402156 <_IO_stdin_used+0x156>
+ 	lea    eax,[r10+rbp*1]
+ 	mov    DWORD PTR [rsp+0xc],r10d
+ 	cdqe
+ 	push   rdx
+ 	lea    rax,[r12+rax*4]
+ 	movzx  edx,BYTE PTR [rax+0x3]
+ 	push   rdx
+ 	movzx  edx,BYTE PTR [rax+0x2]
+ 	push   rdx
+ 	movzx  edx,BYTE PTR [rax+0x1]
+ 	push   rdx
+ 	movzx  r9d,BYTE PTR [rax]
+ 	mov    edx,0x1
+ 	xor    eax,eax
+ 	call   401150 <__snprintf_chk@plt>
+ 	mov    eax,ebp
+ 	mov    r10d,DWORD PTR [rsp+0x2c]
+ 	movups xmm0,XMMWORD PTR [r14]
+ 	cdq
+ 	add    rsp,0x20
+ 	inc    ebp
+ 	idiv   r15d
+ 	lea    eax,[rdx+r10*1]
+ 	xor    edx,edx
+ 	div    DWORD PTR [rbx+0xc]
+ 	imul   rdx,rdx,0x18
+ 	add    rdx,QWORD PTR [rbx+0x10]
+ 	movups XMMWORD PTR [rdx],xmm0
+ 	mov    rax,QWORD PTR [r14+0x10]
+ 	mov    QWORD PTR [rdx+0x10],rax
+ 	jmp    4017b2 <handle_20169+0xc8>
+ 	inc    r13d
+ 	jmp    4017a3 <handle_20169+0xb9>
+ 	mov    rax,QWORD PTR [rsp+0x38]
+ 	xor    rax,QWORD PTR fs:0x28
+ 	je     40185d <handle_20169+0x173>
+ 	call   401190 <__stack_chk_fail@plt>
+ 	add    rsp,0x48
+ 	pop    rbx
+ 	pop    rbp
+ 	pop    r12
+ 	pop    r13
+ 	pop    r14
+ 	pop    r15
+ 	ret
+
+000000000040186c <handle_507>:
+ 	endbr64
+ 	push   r15
+ 	or     r8d,0xffffffff
+ 	mov    edx,0x1
+ 	lea    rcx,[rip+0x8f1]        # 402173 <_IO_stdin_used+0x173>
+ 	push   r14
+ 	push   r13
+ 	push   r12
+ 	mov    r12,rdi
+ 	xor    edi,edi
+ 	push   rbp
+ 	push   rbx
+ 	sub    rsp,0x38
+ 	mov    rax,QWORD PTR fs:0x28
+ 	mov    QWORD PTR [rsp+0x28],rax
+ 	xor    eax,eax
+ 	lea    rsi,[rsp+0xd]
+ 	call   40168b <read_exact>
+ 	or     r8d,0xffffffff
+ 	xor    edi,edi
+ 	lea    rsi,[rsp+0xe]
+ 	lea    rcx,[rip+0x8d3]        # 402192 <_IO_stdin_used+0x192>
+ 	mov    edx,0x1
+ 	call   40168b <read_exact>
+ 	or     r8d,0xffffffff
+ 	xor    edi,edi
+ 	lea    rsi,[rsp+0xb]
+ 	lea    rcx,[rip+0x8d6]        # 4021b1 <_IO_stdin_used+0x1b1>
+ 	mov    edx,0x1
+ 	call   40168b <read_exact>
+ 	xor    edi,edi
+ 	or     r8d,0xffffffff
+ 	mov    edx,0x1
+ 	lea    rsi,[rsp+0xc]
+ 	lea    rcx,[rip+0x8d3]        # 4021cf <_IO_stdin_used+0x1cf>
+ 	call   40168b <read_exact>
+ 	movzx  ebx,BYTE PTR [rsp+0xb]
+ 	movzx  edx,BYTE PTR [rsp+0xc]
+ 	imul   ebx,edx
+ 	movsxd rbx,ebx
+ 	shl    rbx,0x2
+ 	mov    rdi,rbx
+ 	call   401200 <malloc@plt>
+ 	test   rax,rax
+ 	jne    401930 <handle_507+0xc4>
+ 	lea    rdi,[rip+0x7aa]        # 4020d3 <_IO_stdin_used+0xd3>
+ 	call   401170 <puts@plt>
+ 	jmp    401988 <handle_507+0x11c>
+ 	mov    edx,ebx
+ 	mov    rsi,rax
+ 	or     r8d,0xffffffff
+ 	xor    edi,edi
+ 	lea    rcx,[rip+0x7c6]        # 402108 <_IO_stdin_used+0x108>
+ 	mov    rbp,rax
+ 	call   40168b <read_exact>
+ 	movzx  eax,BYTE PTR [rsp+0xc]
+ 	movzx  edx,BYTE PTR [rsp+0xb]
+ 	imul   edx,eax
+ 	xor    eax,eax
+ 	cmp    edx,eax
+ 	jle    401990 <handle_507+0x124>
+ 	movzx  ecx,BYTE PTR [rbp+rax*4+0x3]
+ 	inc    rax
+ 	lea    esi,[rcx-0x20]
+ 	cmp    sil,0x5e
+ 	jbe    401959 <handle_507+0xed>
+ 	mov    rdi,QWORD PTR [rip+0x682b]        # 4081a0 <stderr@GLIBC_2.2.5>
+ 	lea    rdx,[rip+0x7a8]        # 402124 <_IO_stdin_used+0x124>
+ 	mov    esi,0x1
+ 	xor    eax,eax
+ 	call   401250 <__fprintf_chk@plt>
+ 	or     edi,0xffffffff
+ 	call   401240 <exit@plt>
+ 	xor    r13d,r13d
+ 	lea    r15,[rsp+0xf]
+ 	movzx  eax,BYTE PTR [rsp+0xc]
+ 	cmp    eax,r13d
+ 	jle    401a4d <handle_507+0x1e1>
+ 	xor    r14d,r14d
+ 	movzx  ecx,BYTE PTR [rsp+0xb]
+ 	cmp    ecx,r14d
+ 	jle    401a45 <handle_507+0x1d9>
+ 	movzx  eax,BYTE PTR [rsp+0xd]
+ 	movzx  ebx,BYTE PTR [rsp+0xe]
+ 	imul   ecx,r13d
+ 	mov    rdi,r15
+ 	movzx  esi,BYTE PTR [r12+0x6]
+ 	lea    r8,[rip+0x781]        # 402156 <_IO_stdin_used+0x156>
+ 	add    eax,r14d
+ 	add    ebx,r13d
+ 	cdq
+ 	imul   ebx,esi
+ 	add    ecx,r14d
+ 	inc    r14d
+ 	idiv   esi
+ 	movsxd rcx,ecx
+ 	mov    esi,0x19
+ 	lea    rax,[rbp+rcx*4+0x0]
+ 	mov    ecx,0x19
+ 	add    ebx,edx
+ 	push   rdx
+ 	movzx  edx,BYTE PTR [rax+0x3]
+ 	push   rdx
+ 	movzx  edx,BYTE PTR [rax+0x2]
+ 	push   rdx
+ 	movzx  edx,BYTE PTR [rax+0x1]
+ 	push   rdx
+ 	movzx  r9d,BYTE PTR [rax]
+ 	mov    edx,0x1
+ 	xor    eax,eax
+ 	call   401150 <__snprintf_chk@plt>
+ 	mov    eax,ebx
+ 	xor    edx,edx
+ 	movups xmm0,XMMWORD PTR [r15]
+ 	div    DWORD PTR [r12+0xc]
+ 	add    rsp,0x20
+ 	imul   rdx,rdx,0x18
+ 	add    rdx,QWORD PTR [r12+0x10]
+ 	movups XMMWORD PTR [rdx],xmm0
+ 	mov    rax,QWORD PTR [r15+0x10]
+ 	mov    QWORD PTR [rdx+0x10],rax
+ 	jmp    4019a9 <handle_507+0x13d>
+ 	inc    r13d
+ 	jmp    401998 <handle_507+0x12c>
+ 	mov    rax,QWORD PTR [rsp+0x28]
+ 	xor    rax,QWORD PTR fs:0x28
+ 	je     401a62 <handle_507+0x1f6>
+ 	call   401190 <__stack_chk_fail@plt>
+ 	add    rsp,0x38
+ 	pop    rbx
+ 	pop    rbp
+ 	pop    r12
+ 	pop    r13
+ 	pop    r14
+ 	pop    r15
+ 	ret
+

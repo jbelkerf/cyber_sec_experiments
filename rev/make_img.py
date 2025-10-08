@@ -15,8 +15,8 @@
 with open("img.cimg", "wb") as f:
     magic = b"cIMG"
     version = 2
-    width = 4
-    height = 1
+    width = 31
+    height = 30
 
     # header
     f.write(magic)
@@ -26,10 +26,58 @@ with open("img.cimg", "wb") as f:
 
     # pixels
     pixels = [
-        (49, 196, 198, ord('c')),
-        (92, 167, 123, ord('I')),
-        (89,   7,  16, ord('M')),
-        (244, 63,  16, ord('G')),
+        (255, 255, 255, ord('.')),
+        (92, 167, 123, ord('-')),
+        (89,   7,  16, ord(' ')),
+        (244, 63,  16, ord('.')),
     ]
-    for r,g,b,ch in pixels:
-        f.write(bytes([r,g,b,ch]))
+
+    i = 0
+    f.write(bytes([255, 255, 255, ord('.')]))
+    i+=1
+
+    while i < 61:
+        f.write(bytes([255, 255, 255, ord('-')]))
+        i+=1
+
+    f.write(bytes([255, 255, 255, ord('.')]))
+    i+=1
+
+    f.write(bytes([255, 255, 255, ord('|')]))
+    i+=1
+    
+    while i < 123:
+        f.write(bytes([0, 0, 0, ord(' ')]))
+        i+=1
+    while i < 125:
+        f.write(bytes([255, 255, 255, ord('|')]))
+        i+=1
+    while i < 167:
+        f.write(bytes([0, 0, 0, ord(' ')]))
+        i+=1
+    # f.write(bytes([2, 96, 245, ord('z')]))
+    # i+=1
+    while i < 169:
+        f.write(bytes([96, 245, 183, ord('_')]))
+        i+=1
+    while i < 171:
+        f.write(bytes([0, 0, 0, ord(' ')]))
+        i+=1
+    while i < 173:
+        f.write(bytes([96, 245, 183, ord('_')]))
+        i+=1
+    while i < 185:
+        f.write(bytes([0, 0, 0, ord(' ')]))
+        i+=1
+    while i < 187:
+        f.write(bytes([255, 255, 255, ord('|')]))
+        i+=1
+
+    while i < 203:
+        f.write(bytes([0, 0, 0, ord(' ')]))
+        i+=1
+
+   
+    while i < width * height:
+        f.write(bytes([2, 9, 219, ord('_')]))
+        i+=1
