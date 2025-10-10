@@ -5,7 +5,7 @@ with open("img.cimg", "wb") as f:
     version = 3
     width  = 76
     height = 24 #1824
-    derictive = 41#84
+    derictive = 46#84
     derictive_code = 52965
 
     # header
@@ -16,6 +16,43 @@ with open("img.cimg", "wb") as f:
     f.write((derictive).to_bytes(4, "little"))
 
     to_desplay = desired_output.split("\x1b")
+
+    #special 24 derictive
+    f.write((derictive_code).to_bytes(2, "little"))
+    f.write(bytes([51, 10, 1,1]))
+    i = 1
+    while i < 2:
+        f.write(bytes([ 128, 128, 128, ord(b"|")]))
+        i+=1
+    #special 24 derictive
+    f.write((derictive_code).to_bytes(2, "little"))
+    f.write(bytes([51, 12, 1,2]))
+    i = 1
+    while i < 3:
+        f.write(bytes([ 128, 128, 128, ord(b"|")]))
+        i+=1
+    #special 24 derictive
+    f.write((derictive_code).to_bytes(2, "little"))
+    f.write(bytes([50, 11, 1,1]))
+    i = 1
+    while i <2:
+        f.write(bytes([ 128, 128, 128, ord(b"_")]))
+        i+=1
+
+    #special 24 derictive
+    f.write((derictive_code).to_bytes(2, "little"))
+    f.write(bytes([49, 12, 1,1]))
+    i = 1
+    while i <2:
+        f.write(bytes([ 128, 128, 128, ord(b"|")]))
+        i+=1
+    #special 24 derictive
+    f.write((derictive_code).to_bytes(2, "little"))
+    f.write(bytes([48, 12, 1,1]))
+    i = 1
+    while i <2:
+        f.write(bytes([ 128, 128, 128, ord(b"_")]))
+        i+=1
 
 #    up derictive
     f.write((derictive_code).to_bytes(2, "little"))
