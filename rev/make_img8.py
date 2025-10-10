@@ -3,8 +3,8 @@ from sss import   patch_str as desired_output
 with open("img.cimg", "wb") as f:
     magic = b"cIMG"
     version = 3
-    width  = 58
-    height = 12  #484
+    width  = 76
+    height = 24  #484
     derictive = 1
 
     # header
@@ -16,7 +16,7 @@ with open("img.cimg", "wb") as f:
 
     to_desplay = desired_output.split("\x1b")
    
-    f.write((20169).to_bytes(2, "little"))
+    f.write((1).to_bytes(2, "little"))
     i = 1
     while i < len(to_desplay):
         try:
