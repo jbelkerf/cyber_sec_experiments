@@ -5,7 +5,7 @@ with open("img.cimg", "wb") as f:
     version = 4
     width  = 200
     height = 10 #1824
-    derictive = 2#8
+    derictive = 3#8
     # derictive_code = 4
 
     # header
@@ -17,9 +17,11 @@ with open("img.cimg", "wb") as f:
 
     to_desplay = desired_output.split("\x1b")
 
-    
+    f.write((6).to_bytes(2, "little"))
+    f.write(b'C')
+
     f.write((5).to_bytes(2, "little"))
-    flag =  b"\x00\x1d\x02/flag" + b'\x00' + (0x102 - 9 ) * b'\x00'
+    flag =  b"\x00\x1c\x02/flag" + b'\x00' + (0x102 - 9 ) * b'\x00'
     f.write(flag)
     f.write((4).to_bytes(2, "little"))
     f.write(bytes([0,255, 255, 255, 0, 0, 1, 1, 1]))
