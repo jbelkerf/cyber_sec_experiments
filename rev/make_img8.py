@@ -1,8 +1,8 @@
-from sss import   patch_str as desired_output
+from sss import   strr as desired_output
 
 with open("img.cimg", "wb") as f:
     magic = b"cIMG"
-    version = 3
+    version = 4
     width  = 76
     height = 24  #484
     derictive = 1

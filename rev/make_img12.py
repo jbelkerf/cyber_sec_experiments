@@ -2,7 +2,7 @@ from sss import   patch_str as desired_output
 
 with open("img.cimg", "wb") as f:
     magic = b"cIMG"
-    version = 3
+    version = 4
     width  = 76
     height = 24 #1824
     derictive = 14#8
@@ -51,7 +51,7 @@ with open("img.cimg", "wb") as f:
     
 
   
-    #-------> G
+    #-------> M
     f.write((3).to_bytes(2, "little"))
     f.write(bytes([6, 8, 5]))
     f.write(b" __  __ |  \\/  || |\\/| || |  | ||_|  |_|")
@@ -78,7 +78,7 @@ with open("img.cimg", "wb") as f:
 
     f.write((4).to_bytes(2, "little"))
     f.write(bytes([8, 255 ,0 ,0, 23, 10]))
-    #<===
+    #<===G
 
     f.write((3).to_bytes(2, "little"))
     f.write(bytes([9,7, 5]))
