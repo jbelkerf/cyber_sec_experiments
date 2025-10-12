@@ -8,7 +8,7 @@ x = 0
 # byte1 = f.read(1)
 # t.write(byte1)
 print('starting ...')
-while (i < 71698):
+while (i < 71697):
     byte1 = f.read(1)
     if byte1 == b'\x06':
         print('found derictive 6')
@@ -25,7 +25,7 @@ while (i < 71698):
         byte4 = f.read(1)
         byte5 = f.read(1)
         if byte2 == b'\x00' and byte3 == b'\x93' and byte4 == b'\x30' and byte5 == b'\x0b':
-            t.write(b'\x07\x00\x00\x00\x00')
+            t.write(b'\x07\x00\x00\x00\x01')
         else:
             t.write(b'\x07')
     else:
